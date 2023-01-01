@@ -15,26 +15,18 @@ public class AccountSummmary_StepDefs {
 
     @Then("The user should be able to see as a page header {string}")
     public void the_user_should_be_able_to_see_as_a_page_header(String expectedHeader) {
-        BrowserUtils.waitFor(3);
-        String actualHeader= Driver.get().getTitle();
-        System.out.println("actualHeader = " + actualHeader);
-        Assert.assertEquals("Headers are NOT match", expectedHeader,actualHeader);
-
+        accountSummary.getAccountTypepageTitle_mtd(expectedHeader);
     }
-    @Then("The user should be able to see {string} in Account Summary page")
-    public void the_user_should_be_able_to_see_in_account_summary_page(String expectedAccountTypes) {
 
-        String actualText= accountSummary.getAccountName_mtd(expectedAccountTypes);
-        Assert.assertEquals("Account type is NOT match", expectedAccountTypes,actualText);
-
+    @Then("The user should be able to see account types, under the Account Summary")
+    public void theUserShouldBeAbleToSeeAccountTypesUnderTheAccountSummary(List<String> expectedList) {
+      accountSummary.accountTypeVerification_mtd(expectedList);
     }
+
 
     @Then("The user should be able to see with {int} this {string}")
     public void the_user_should_be_able_to_see_with_this(int columnNum, String expectedCreditAccountName) {
-
-        String actualName= accountSummary.getCreditAccountTable_mtd(columnNum);
-        //System.out.println("actualName = " + actualName);
-        Assert.assertEquals("Credit Account name is NOT match",expectedCreditAccountName, actualName);
+       accountSummary.getCreditAccountTable_mtd(columnNum,expectedCreditAccountName);
     }
 
 }

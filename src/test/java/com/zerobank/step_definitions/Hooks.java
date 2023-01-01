@@ -14,9 +14,10 @@ public class Hooks {
     @Before
     public void setup(){
 
+
         Driver.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
-    @io.cucumber.java.After
+    @After
     public void tearDown(Scenario scenario){
         if(scenario.isFailed()){
             final byte[]screenshot= ((TakesScreenshot) Driver.get()).getScreenshotAs(OutputType.BYTES);
