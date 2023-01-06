@@ -39,7 +39,8 @@ public class PayBills_StepDefs {
 
     @When("The user pay submit")
     public void the_user_pay_submit() {
-        payBillsPage.paySubmit_mtd();
+       // payBillsPage.paySubmit_mtd();
+        payBillsPage.paySubmitBtn_loc.click();
 
     }
 
@@ -48,6 +49,28 @@ public class PayBills_StepDefs {
         payBillsPage.paymetVerification_mtd(expectedMessage);
 
     }
+    @When("The amount field must NOT contain alphabetic or special {string}")
+    public void theAmountFieldMustNOTContainAlphabeticOrSpecial(String characters) {
+        payBillsPage.sendInvalidAmount_mtd(characters);
+
+    }
+
+    @When("Alphabetical characters {string} should NOT be written in the date field.")
+    public void alphabeticalCharactersShouldNOTBeWrittenInTheDateField(String alphabeticalCharacters) {
+        payBillsPage.enterInvalidDate_mtd(alphabeticalCharacters);
+    }
+
+
+    @Then("When alphabetic or special characters are entered in the amount field, the {string} should NOT be displayed.")
+    public void whenAlphabeticOrSpecialCharactersAreEnteredInTheAmountFieldTheShouldNOTBeDisplayed(String message) {
+        payBillsPage.paymetVerification_mtd(message);
+    }
+
+
+
+
+
+
 
 
 }

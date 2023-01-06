@@ -11,6 +11,9 @@ import org.openqa.selenium.support.ui.Select;
 
 public class PayBillsPage extends BasePage{
 
+    @FindBy(xpath = "//select[@id='sp_payee']")
+    public WebElement payeeSelectMenu;
+
     @FindBy(css = "#sp_amount")
     public WebElement amountInput_loc;
 
@@ -30,9 +33,10 @@ public class PayBillsPage extends BasePage{
     public WebElement paymetVerification_loc;
 
 
+
     public void payeeMenuSelect_mtd(String optionName){
 
-        WebElement payeeSelectMenu= Driver.get().findElement(By.xpath("//select[@id='sp_payee']"));
+        //WebElement payeeSelectMenu= Driver.get().findElement(By.xpath("//select[@id='sp_payee']"));
         Select select=new Select(payeeSelectMenu);
         select.selectByVisibleText(optionName);
         BrowserUtils.waitFor(1);
@@ -62,15 +66,23 @@ public class PayBillsPage extends BasePage{
 
     }
 
-    public void paySubmit_mtd(){
-
-        paySubmitBtn_loc.click();
-    }
-
     public void paymetVerification_mtd(String expectedMessage){
 
         String actualMessage=paymetVerification_loc.getText();
 
         Assert.assertEquals("The messages are NOT equals",expectedMessage,actualMessage);
     }
+
+    public void sendInvalidAmount_mtd(String characters){
+        BrowserUtils.waitFor(1);
+        amountInput_loc.sendKeys(characters);
+        BrowserUtils.waitFor(1);
+    }
+
+    public void enterInvalidDate_mtd(String alphabeticalCharacters){
+        dateInput_loc.sendKeys(alphabeticalCharacters);
+        BrowserUtils.waitFor(2);
+    }
+
+
 }
