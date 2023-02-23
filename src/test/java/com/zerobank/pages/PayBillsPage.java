@@ -67,7 +67,7 @@ public class PayBillsPage extends BasePage{
     }
 
     public void paymetVerification_mtd(String expectedMessage){
-
+        BrowserUtils.waitFor(2);
         String actualMessage=paymetVerification_loc.getText();
 
         Assert.assertEquals("The messages are NOT equals",expectedMessage,actualMessage);

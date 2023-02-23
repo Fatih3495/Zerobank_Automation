@@ -1,4 +1,4 @@
-@wip
+
 Feature: Pay Bills Page Test
 
   Background: Go to home page
@@ -15,6 +15,7 @@ Feature: Pay Bills Page Test
     And The user enters "House rent" to description box
     When The user pay submit
     Then The user should be able to see "The payment was successfully submitted."
+
 
   Scenario Outline: Negative scenario : The user should NOT be able to
     When The amount field must NOT contain alphabetic or special "<characters>"
